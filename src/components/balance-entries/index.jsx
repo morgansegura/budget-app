@@ -1,13 +1,13 @@
 import React from 'react'
 import { BalanceEntry } from '..'
 
-const BalanceEntries = ({ entries, deleteEntry, setIsOpen }) => {
+const BalanceEntries = ({ entries, deleteEntry, editEntry }) => {
 	return entries.map(entry => (
 		<BalanceEntry
 			key={entry.id}
 			{...entry}
 			deleteEntry={deleteEntry}
-			setIsOpen={setIsOpen}
+			editEntry={editEntry}
 		/>
 	))
 }

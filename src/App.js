@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container } from 'semantic-ui-react'
 
 import {
@@ -18,12 +18,36 @@ function App() {
 	const [value, setValue] = useState('')
 	const [isExpense, setIsExpense] = useState(true)
 	const [isOpen, setIsOpen] = useState(false)
+	const [entryId, setEntryId] = useState('')
+
+	useEffect(() => {
+		if (!isOpen && entryId) {
+			const index = entries.findIndex(entry => entry.id === entryId)
+			const newEntries = [...entries]
+			newEntries[index].description = description
+			newEntries[index].value = value
+			newEntries[index].isExpense = isExpense
+			setEntries(newEntries)
+		}
+	}, [description, entries, entryId, isExpense, isOpen, value])
 
 	const deleteEntry = id => {
 		const result = entries.filter(entry => entry.id !== id)
 		console.log('entries', entries)
 		console.log('result', result)
 		setEntries(result)
+	}
+
+	const editEntry = id => {
+		if (id) {
+			const index = entries.findIndex(entry => entry.id === id)
+			const entry = entries[index]
+			setDescription(entry.description)
+			setEntryId(id)
+			setValue(entry.value)
+			setIsExpense(entry.isExpense)
+			setIsOpen(true)
+		}
 	}
 
 	const addEntry = (description, value, isExpense) => {
@@ -51,7 +75,7 @@ function App() {
 			<BalanceEntries
 				entries={entries}
 				deleteEntry={deleteEntry}
-				setIsOpen={setIsOpen}
+				editEntry={editEntry}
 			/>
 
 			<MainHeader title='Add a new transaction' type='h3' />
@@ -64,7 +88,17 @@ function App() {
 				setValue={setValue}
 				value={value}
 			/>
-			<ModalEdit isOpen={isOpen} setIsOpen={setIsOpen} />
+			<ModalEdit
+				addEntry={addEntry}
+				description={description}
+				isExpense={isExpense}
+				isOpen={isOpen}
+				setDescription={setDescription}
+				setIsExpense={setIsExpense}
+				setIsOpen={setIsOpen}
+				setValue={setValue}
+				value={value}
+			/>
 		</Container>
 	)
 }

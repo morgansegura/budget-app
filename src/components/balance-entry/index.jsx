@@ -4,9 +4,9 @@ import { Grid, Icon, Segment } from 'semantic-ui-react'
 const BalanceEntry = ({
 	deleteEntry,
 	description,
+	editEntry,
 	id,
 	isExpense = false,
-	setIsOpen,
 	value,
 }) => {
 	return (
@@ -24,7 +24,7 @@ const BalanceEntry = ({
 							<Icon
 								name='edit'
 								bordered
-								onClick={() => setIsOpen(true)}
+								onClick={() => editEntry(id)}
 							/>
 							<Icon
 								name='trash'
