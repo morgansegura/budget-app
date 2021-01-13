@@ -1,15 +1,14 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import { Grid, Icon, Segment } from 'semantic-ui-react'
-import { ModalEdit } from '..'
 
 const BalanceEntry = ({
-	isExpense = false,
 	deleteEntry,
 	description,
 	id,
+	isExpense = false,
+	setIsOpen,
 	value,
 }) => {
-	const [isOpen, setIsOpen] = useState(false)
 	return (
 		<Fragment>
 			<Segment color={isExpense ? 'red' : 'green'}>
@@ -36,7 +35,6 @@ const BalanceEntry = ({
 					</Grid.Row>
 				</Grid>
 			</Segment>
-			<ModalEdit isOpen={isOpen} setIsOpen={setIsOpen} />
 		</Fragment>
 	)
 }

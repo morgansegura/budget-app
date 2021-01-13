@@ -7,12 +7,17 @@ import {
 	DisplayBalances,
 	NewEntryForm,
 	MainHeader,
+	ModalEdit,
 } from './components'
 
 import './App.css'
 
 function App() {
 	const [entries, setEntries] = useState(intialEntries)
+	const [description, setDescription] = useState('')
+	const [value, setValue] = useState('')
+	const [isExpense, setIsExpense] = useState(true)
+	const [isOpen, setIsOpen] = useState(false)
 
 	const deleteEntry = id => {
 		const result = entries.filter(entry => entry.id !== id)
@@ -43,10 +48,23 @@ function App() {
 
 			<MainHeader title='History' type='h3' />
 
-			<BalanceEntries entries={entries} deleteEntry={deleteEntry} />
+			<BalanceEntries
+				entries={entries}
+				deleteEntry={deleteEntry}
+				setIsOpen={setIsOpen}
+			/>
 
 			<MainHeader title='Add a new transaction' type='h3' />
-			<NewEntryForm addEntry={addEntry} />
+			<NewEntryForm
+				addEntry={addEntry}
+				description={description}
+				isExpense={isExpense}
+				setDescription={setDescription}
+				setIsExpense={setIsExpense}
+				setValue={setValue}
+				value={value}
+			/>
+			<ModalEdit isOpen={isOpen} setIsOpen={setIsOpen} />
 		</Container>
 	)
 }

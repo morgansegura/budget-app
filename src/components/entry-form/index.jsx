@@ -4,8 +4,8 @@ import { Checkbox, Form, Segment } from 'semantic-ui-react'
 const EntryForm = ({
 	description,
 	isExpense,
-	setIsExpense,
 	setDescription,
+	setIsExpense,
 	setValue,
 	value,
 }) => {
@@ -35,7 +35,7 @@ const EntryForm = ({
 					toggle
 					label='is expense'
 					checked={isExpense}
-					onChange={() => setIsExpense(oldState => !oldState)}
+					onChange={() => setIsExpense(!isExpense)}
 				/>
 			</Segment>
 		</Fragment>
