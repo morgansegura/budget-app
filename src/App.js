@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { Container } from 'semantic-ui-react'
 
 import {
@@ -11,6 +12,8 @@ import {
 import './App.css'
 
 function App() {
+	const [entries, setEntries] = useState(intialEntries)
+
 	return (
 		<Container>
 			<MainHeader title='Budget' type='h1' />
@@ -22,8 +25,14 @@ function App() {
 			<DisplayBalances />
 
 			<MainHeader title='History' type='h3' />
-			<BalanceEntry label='Anything' value='10.00' />
-			<BalanceEntry isExpense={true} label='A defecit' value='100.00' />
+
+			{entries.map(({ isExpense, description, value }, i) => (
+				<BalanceEntry
+					isExpense={isExpense}
+					description={description}
+					value={value}
+				/>
+			))}
 
 			<MainHeader title='Add a new transaction' type='h3' />
 			<EntryForm />
@@ -32,3 +41,26 @@ function App() {
 }
 
 export default App
+
+const intialEntries = [
+	{
+		description: 'Work Income',
+		value: '4000.00',
+		isExpense: false,
+	},
+	{
+		description: 'Water bill',
+		value: '123.00',
+		isExpense: true,
+	},
+	{
+		description: 'Rent',
+		value: '3000.00',
+		isExpense: true,
+	},
+	{
+		description: 'Power Bill',
+		value: '130.00',
+		isExpense: true,
+	},
+]

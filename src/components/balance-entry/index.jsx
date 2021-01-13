@@ -1,13 +1,13 @@
 import React from 'react'
 import { Grid, Icon, Segment } from 'semantic-ui-react'
 
-const BalanceEntry = ({ isExpense = false, label, value }) => {
+const BalanceEntry = ({ isExpense = false, description, value }) => {
 	return (
 		<Segment color={isExpense ? 'red' : 'green'}>
 			<Grid columns={3} textAlign='right'>
 				<Grid.Row>
 					<Grid.Column width={10} textAlign='left'>
-						{label}
+						{description}
 					</Grid.Column>
 					<Grid.Column width={3} textAlign='right'>
 						${value}
