@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { Fragment } from 'react'
 import { Checkbox, Form, Segment } from 'semantic-ui-react'
-import { ButtonSaveOrCancel } from '..'
 
-const EntryForm = ({ addEntry }) => {
-	const [description, setDescription] = useState('')
-	const [value, setValue] = useState('')
-	const [isExpense, setIsExpense] = useState(true)
+const EntryForm = ({
+	description,
+	isExpense,
+	setIsExpense,
+	setDescription,
+	setValue,
+	value,
+}) => {
 	return (
-		<Form unstackable>
+		<Fragment>
 			<Form.Group>
 				<Form.Input
 					icon='tags'
@@ -35,13 +38,7 @@ const EntryForm = ({ addEntry }) => {
 					onChange={() => setIsExpense(oldState => !oldState)}
 				/>
 			</Segment>
-			<ButtonSaveOrCancel
-				addEntry={addEntry}
-				description={description}
-				value={value}
-				isExpense={isExpense}
-			/>
-		</Form>
+		</Fragment>
 	)
 }
 

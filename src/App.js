@@ -5,7 +5,7 @@ import {
 	BalanceEntries,
 	DisplayBalance,
 	DisplayBalances,
-	EntryForm,
+	NewEntryForm,
 	MainHeader,
 } from './components'
 
@@ -46,7 +46,7 @@ function App() {
 			<BalanceEntries entries={entries} deleteEntry={deleteEntry} />
 
 			<MainHeader title='Add a new transaction' type='h3' />
-			<EntryForm addEntry={addEntry} />
+			<NewEntryForm addEntry={addEntry} />
 		</Container>
 	)
 }
