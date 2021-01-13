@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container } from 'semantic-ui-react'
 
 import {
-	BalanceEntry,
+	BalanceEntries,
 	DisplayBalance,
 	DisplayBalances,
 	EntryForm,
@@ -26,13 +26,7 @@ function App() {
 
 			<MainHeader title='History' type='h3' />
 
-			{entries.map(({ isExpense, description, value }, i) => (
-				<BalanceEntry
-					isExpense={isExpense}
-					description={description}
-					value={value}
-				/>
-			))}
+			<BalanceEntries entries={entries} />
 
 			<MainHeader title='Add a new transaction' type='h3' />
 			<EntryForm />
@@ -44,21 +38,25 @@ export default App
 
 const intialEntries = [
 	{
+		id: 1,
 		description: 'Work Income',
 		value: '4000.00',
 		isExpense: false,
 	},
 	{
+		id: 2,
 		description: 'Water bill',
 		value: '123.00',
 		isExpense: true,
 	},
 	{
+		id: 3,
 		description: 'Rent',
 		value: '3000.00',
 		isExpense: true,
 	},
 	{
+		id: 4,
 		description: 'Power Bill',
 		value: '130.00',
 		isExpense: true,

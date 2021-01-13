@@ -1,3 +1,4 @@
+export { default as BalanceEntries } from './balance-entries'
 export { default as BalanceEntry } from './balance-entry'
 export { default as ButtonSaveOrCancel } from './button-save-or-cancel'
 export { default as DisplayBalance } from './display-balance'

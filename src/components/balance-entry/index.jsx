@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Icon, Segment } from 'semantic-ui-react'
 
-const BalanceEntry = ({ isExpense = false, description, value }) => {
+const BalanceEntry = ({ entry: { isExpense = false, description, value } }) => {
 	return (
 		<Segment color={isExpense ? 'red' : 'green'}>
 			<Grid columns={3} textAlign='right'>
