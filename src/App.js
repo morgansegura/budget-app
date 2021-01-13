@@ -14,6 +14,13 @@ import './App.css'
 function App() {
 	const [entries, setEntries] = useState(intialEntries)
 
+	const deleteEntry = id => {
+		const result = entries.filter(entry => entry.id !== id)
+		console.log('entries', entries)
+		console.log('result', result)
+		setEntries(result)
+	}
+
 	return (
 		<Container>
 			<MainHeader title='Budget' type='h1' />
@@ -26,7 +33,7 @@ function App() {
 
 			<MainHeader title='History' type='h3' />
 
-			<BalanceEntries entries={entries} />
+			<BalanceEntries entries={entries} deleteEntry={deleteEntry} />
 
 			<MainHeader title='Add a new transaction' type='h3' />
 			<EntryForm />
