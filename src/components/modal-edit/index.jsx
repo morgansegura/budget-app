@@ -27,7 +27,7 @@ const ModalEdit = ({
 				<Modal.Description>Content here</Modal.Description>
 			</Modal.Content>
 			<Modal.Actions>
-				<Button onClick={() => setIsOpen(false)}>Colse</Button>
+				<Button onClick={() => setIsOpen(false)}>Close</Button>
 				<Button primary onClick={() => setIsOpen(false)}>
 					Save
 				</Button>

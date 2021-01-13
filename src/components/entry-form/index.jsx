@@ -33,7 +33,7 @@ const EntryForm = ({
 			<Segment compact>
 				<Checkbox
 					toggle
-					label='is expense'
+					label={isExpense ? 'Expense' : 'Income'}
 					checked={isExpense}
 					onChange={() => setIsExpense(!isExpense)}
 				/>
