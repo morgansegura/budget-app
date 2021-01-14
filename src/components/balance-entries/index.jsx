@@ -1,14 +1,9 @@
 import React from 'react'
 import { BalanceEntry } from '..'
 
-const BalanceEntries = ({ entries, deleteEntry, editEntry }) => {
+const BalanceEntries = ({ entries, editEntry }) => {
 	return entries.map(entry => (
-		<BalanceEntry
-			key={entry.id}
-			{...entry}
-			deleteEntry={deleteEntry}
-			editEntry={editEntry}
-		/>
+		<BalanceEntry key={entry.id} {...entry} editEntry={editEntry} />
 	))
 }
 
