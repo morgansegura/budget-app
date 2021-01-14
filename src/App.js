@@ -19,6 +19,9 @@ function App() {
 	const [isExpense, setIsExpense] = useState(true)
 	const [isOpen, setIsOpen] = useState(false)
 	const [entryId, setEntryId] = useState('')
+	const [incomeTotal, setIncomeTotal] = useState(0)
+	const [expenseTotal, setExpenseTotal] = useState(0)
+	const [total, setTotal] = useState(0)
 
 	useEffect(() => {
 		if (!isOpen && entryId) {
@@ -30,7 +33,23 @@ function App() {
 			setEntries(newEntries)
 			resetEntry()
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isOpen])
+
+	useEffect(() => {
+		let totalIncome = 0
+		let totalExpense = 0
+		entries.map(entry => {
+			if (entry.isExpense) {
+				return (totalExpense += Number(entry.value))
+			} else {
+				return (totalIncome += Number(entry.value))
+			}
+		})
+		setTotal(totalIncome - totalExpense)
+		setExpenseTotal(totalExpense)
+		setIncomeTotal(totalIncome)
+	}, [entries])
 
 	const resetEntry = () => {
 		setDescription('')
@@ -71,12 +90,11 @@ function App() {
 	return (
 		<Container>
 			<MainHeader title='Budget' type='h1' />
-			<DisplayBalance
-				size='small'
-				label='Your Balance:'
-				value='2,550.53'
+			<DisplayBalance size='small' label='Your Balance:' value={total} />
+			<DisplayBalances
+				expenseTotal={expenseTotal}
+				incomeTotal={incomeTotal}
 			/>
-			<DisplayBalances />
 
 			<MainHeader title='History' type='h3' />
 
@@ -117,25 +135,25 @@ const intialEntries = [
 	{
 		id: 1,
 		description: 'Work Income',
-		value: '4000.00',
+		value: 4000.0,
 		isExpense: false,
 	},
 	{
 		id: 2,
 		description: 'Water bill',
-		value: '123.00',
+		value: 123.0,
 		isExpense: true,
 	},
 	{
 		id: 3,
 		description: 'Rent',
-		value: '3000.00',
+		value: 3000.0,
 		isExpense: true,
 	},
 	{
 		id: 4,
 		description: 'Power Bill',
-		value: '130.00',
+		value: 130,
 		isExpense: true,
 	},
 ]
